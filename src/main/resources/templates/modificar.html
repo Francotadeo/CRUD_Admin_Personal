@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos de la Persona</title>
+        <meta charset="UTF-8"/>
+        <style>
+            body{font-family: Arial; background-color: #ccc; box-sizing: border-box;}
+            
+            form{
+                background-color: white;
+                border-radius: 3px;
+                color: black;
+                font-size: 1.2em;
+                padding: 50px;
+                margin: 0 auto;
+                width: 700px;
+            }
+            input{
+                border: 1;
+                margin: 20px;
+                margin-left: 30px; 
+            }
+            
+            .field{
+                border: solid 1px #ccc;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+        <h1>Datos del Personal</h1>
+        <a th:href="@{/}"><h3>Regresar</h3></a>
+        </center>
+        <br/>
+        <form th:action="@{/guardar}" method="post" th:object="${persona}">
+            
+            <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
+            <br/>
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" th:field="*{nombre}" class="field"/>
+            <br/>
+            <label for="apellido">Apellido: </label>
+            <input type="text" name="apellido" th:field="*{apellido}" class="field"/>
+            <br/>
+            <label for="email">Email: </label>
+            <input type="email" name="email" th:field="*{email}" class="field"/>
+            <br/>
+            <label for="telefono">Telefono: </label>
+            <input type="tel" name="telefono" th:field="*{telefono}" class="field"/>
+            <br/>
+            <center><input type="submit" name="guardar" value="Guardar"/></center>
+            
+        </form>
+    </body>
+</html>

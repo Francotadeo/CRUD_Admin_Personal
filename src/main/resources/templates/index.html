@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="boton.css">
+        <style>
+            body{font-family: Arial; background-color: #ccc; box-sizing: border-box;}
+            table{
+                background-color: white;
+                border-radius: 3px;
+                color: black;
+                font-size: 1.0em;
+                padding: 100px;
+                margin: 0 auto;
+                width: 1050px;
+            }
+        </style>
+    </head>
+    <body>
+    <center><h1>Administración de Personal</h1>
+        <a th:href="@{/agregar}"><h3>Crear Persona</h3></a>
+    </center>
+        <div th:if="${personas != null and !personas.empty}">
+            <table border="1">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.nombre}">Mostrar Nombre</td>
+                    <td th:text="${persona.apellido}">Mostrar Apellido</td>
+                    <td th:text="${persona.email}">Mostrar Email</td>
+                    <td th:text="${persona.telefono}">Mostrar telefono</td>
+                    <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"></a></td>
+                    <td><a th:href="@{/eliminar/} + ${persona.idPersona}" th:text="Eliminar"></a></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${personas == null or personas.empty}">
+            La lista de personas esta vacia!
+        </div>
+    </body>
+</html>
